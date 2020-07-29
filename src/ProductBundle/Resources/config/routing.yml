@@ -1,3 +1,9 @@
 product_homepage:
     path:     /
     defaults: { _controller: ProductBundle:Default:index }
+Ajouter_Categorie:
+    path:     /AjouterCategorie
+    defaults: { _controller: ProductBundle:Default:AjouterCategorie }
+Ajouter_Marque:
+    path:     /AjouterMarque
+    defaults: { _controller: ProductBundle:Default:AjouterMarque }
