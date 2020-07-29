@@ -1,0 +1,15 @@
+user_homepage:
+    path:     /
+    defaults: { _controller: UserBundle:Default:index }
+Login:
+    path:     /connexion
+    defaults: { _controller: UserBundle:Default:Login }
+register:
+    path:     /inscription
+    defaults: { _controller: UserBundle:Default:Register }
+send:
+    path:     /send
+    defaults: { _controller: UserBundle:Default:sendEmail }
+verifyEmail:
+    path:     /verify/{username}/{token}
+    defaults: { _controller: UserBundle:Default:verifyEmail }

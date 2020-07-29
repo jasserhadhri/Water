@@ -1,0 +1,77 @@
+{% extends('base.html.twig') %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block section %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <div class="login-register-area mb-60px mt-53px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <a class="active" data-toggle="tab" href="#lg1">
+                                <h4>login</h4>
+                            </a>
+                            <a data-toggle="tab" href="#lg2">
+                                <h4>register</h4>
+                            </a>
+                        </div>
+                        <div class="tab-content">
+                            <div id="lg1" class="tab-pane active">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                                            {% if csrf_token %}
+                                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                                            {% endif %}
+                                            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" required="required" placeholder="Username" />
+                                            <input type="password" id="password" name="_password" class="form-control" required="required" placeholder="Password"/>
+                                            <div class="button-box">
+                                                <div class="login-toggle-btn">
+                                                    <input type="checkbox" />
+                                                    <a class="flote-none" href="javascript:void(0)">Remember me</a>
+                                                    <a href="#">Forgot Password?</a>
+                                                </div>
+                                                <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="form-control"/>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="lg2" class="tab-pane">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form action="{{ path('register') }}" method="post">
+                                            <label for="username">Nom d'utilisateur :</label>
+                                            <input type="text" name="username" required="required"/>
+                                            <label for="userpasswordFirst">Mot de passe :</label>
+                                            <input type="password" name="userpasswordFirst" required="required"/>
+                                            <label for="name">Nom :</label>
+                                            <input type="text" name="name" required="required"/>
+                                            <label for="username">Prénom :</label>
+                                            <input type="text" name="prenom" required="required"/>
+                                            <select name="type" required="required">
+                                                <option value="Null">Sexe</option>
+                                                <option value="Mr">Mr</option>
+                                                <option value="Mme">Mme</option>
+                                            </select>
+                                            <br><br><br>
+                                            <label for="date">Date de naissance :</label>
+                                            <input type="date" name="date" required="required"/>
+                                            <label for="email">Email :</label>
+                                            <input name="email" type="email" required="required"/>
+                                            <div class="button-box">
+                                                <button type="submit"><span>Register</span></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
