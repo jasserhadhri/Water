@@ -17,9 +17,9 @@ class MarqueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre',TextType::class)
-            ->add('description',TextareaType::class)
-            ->add('Enregistrer',SubmitType::class);
+            ->add('titre',TextType::class,array("attr"=>["class"=>"form-control"]))
+            ->add('description',TextareaType::class,array("attr"=>["class"=>"form-control"]))
+            ->add('Enregistrer',SubmitType::class,array("attr"=>["class"=>"form-control"]));
     }/**
      * {@inheritdoc}
      */

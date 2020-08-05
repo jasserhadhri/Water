@@ -7,3 +7,9 @@ Ajouter_Categorie:
 Ajouter_Marque:
     path:     /AjouterMarque
     defaults: { _controller: ProductBundle:Default:AjouterMarque }
+Ajouter_Produit:
+    path:     /AjouterProduit
+    defaults: { _controller: ProductBundle:Default:AjouterProduit}
+Ajouter_Promotion:
+    path:     /AjouterPromotion
+    defaults: { _controller: ProductBundle:Default:AjouterPromotion}
