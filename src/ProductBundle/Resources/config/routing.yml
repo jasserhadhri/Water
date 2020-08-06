@@ -1,5 +1,5 @@
 product_homepage:
-    path:     /
+    path:     /home
     defaults: { _controller: ProductBundle:Default:index }
 Ajouter_Categorie:
     path:     /AjouterCategorie
@@ -10,6 +10,9 @@ Ajouter_Marque:
 Ajouter_Produit:
     path:     /AjouterProduit
     defaults: { _controller: ProductBundle:Default:AjouterProduit}
+Afficher_Produits:
+    path:     /AfficherProduits
+    defaults: { _controller: ProductBundle:Default:AfficherProduits}
 Ajouter_Promotion:
     path:     /AjouterPromotion
     defaults: { _controller: ProductBundle:Default:AjouterPromotion}

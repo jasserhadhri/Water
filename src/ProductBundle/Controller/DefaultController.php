@@ -72,4 +72,10 @@ class DefaultController extends Controller
         }
         return $this->render('@Product\Default\AjouterPromotion.html.twig',array("form"=>$form->createView()));
     }
+    public function AfficherProduitsAction(){
+        $produits = $this->getDoctrine()->getRepository(Produit::class)
+            ->findAll();
+        return $this->render('@Product\Default\AfficherProduit.html.twig', array('produits' => $produits));
+
+    }
 }
