@@ -16,3 +16,21 @@ Afficher_Produits:
 Ajouter_Promotion:
     path:     /AjouterPromotion
     defaults: { _controller: ProductBundle:Default:AjouterPromotion}
+Modifier_Produit:
+    path:     /ModifierProduit/{id}
+    defaults: { _controller: ProductBundle:Default:UpdateProduit}
+Afficher_Produit:
+    path:     /AfficherProduit
+    defaults: { _controller: ProductBundle:Default:AfficherProduit}
+Delete_Produit:
+    path:     /DeleteProduit/{id}
+    defaults: { _controller: ProductBundle:Default:DeleteProduit}
+ImageAccueil:
+    path:     /ImageAccueil
+    defaults: { _controller: ProductBundle:Default:SetImageAccueil}
+panier:
+    path:     /panier
+    defaults: { _controller: ProductBundle:Default:Cart}
+cart:
+    path:     /cart
+    defaults: { _controller: ProductBundle:Default:Cart}

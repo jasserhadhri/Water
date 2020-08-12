@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Ecolife - Multipurpose eCommerce HTML Template</title>
+    <title>Tunisia Drinks</title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon/favicon.png') }}" />
 
@@ -49,65 +49,6 @@
     <!-- Header Start -->
     <header class="main-header">
         <!-- Header Top Start -->
-        <div class="header-top-nav">
-            <div class="container-fluid">
-                <div class="row">
-                    <!--Left Start-->
-                    <div class="col-lg-4 col-md-4">
-                        <div class="left-text">
-                            <p>Welcome you to Ecolife store!</p>
-                        </div>
-                    </div>
-                    <!--Left End-->
-                    <!--Right Start-->
-                    <div class="col-lg-8 col-md-8 text-right">
-                        <div class="header-right-nav">
-                            <ul class="res-xs-flex">
-                                <li class="after-n">
-                                    <a href=""><i class="ion-ios-shuffle-strong"></i>Compare (0)</a>
-                                </li>
-                                <li>
-                                    <a href=""><i class="ion-android-favorite-outline"></i>Wishlist (0)</a>
-                                </li>
-                            </ul>
-                            <div class="dropdown-navs">
-                                <ul>
-                                    <!-- Settings Start -->
-                                    <li class="dropdown xs-after-n">
-                                        <a class="angle-icon" href="#">Settings</a>
-                                        <ul class="dropdown-nav">
-                                            <li><a href="">My Account</a></li>
-                                            <li><a href="">Checkout</a></li>
-                                            <li><a href="">Login</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Settings End -->
-                                    <!-- Currency Start -->
-                                    <!--  <li class="top-10px first-child">
-                                          <select>
-                                              <option value="1">USD $</option>
-                                              <option value="2">EUR €</option>
-                                          </select>
-                                      </li>
-                                      -->
-                                    <!-- Currency End -->
-                                    <!-- Language Start -->
-                                    <!-- <li class="top-10px mr-15px">
-                                         <select>
-                                             <option value="1">English</option>
-                                             <option value="2">France</option>
-                                         </select>
-                                     </li>
-                                     -->
-                                    <!-- Language End -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Right End-->
-                </div>
-            </div>
-        </div>
         <!-- Header Top End -->
         <!-- Header Buttom Start -->
         <div class="header-navigation sticky-nav">
@@ -126,27 +67,22 @@
                         <div class="main-navigation d-none d-lg-block">
                             <ul>
                                 <li class="menu-dropdown">
-                                    <a href="#">Home <i class="ion-ios-arrow-down"></i></a>
+                                    <a href="#">Accueil</a>
 
                                 </li>
                                 <li class="menu-dropdown">
-                                    <a href="#">Shop <i class="ion-ios-arrow-down"></i></a>
-
-                                </li>
-                                <li class="menu-dropdown">
-                                    <a href="#">Pages <i class="ion-ios-arrow-down"></i></a>
-
-                                </li>
-                                <li class="menu-dropdown">
-                                    <a href="#">Blog <i class="ion-ios-arrow-down"></i></a>
+                                    <a href="#">Boutique <i class="ion-ios-arrow-down"></i></a>
                                     <ul class="sub-menu">
                                         <li class="menu-dropdown position-static">
-                                            <a href="#">Blog Grid <i class="ion-ios-arrow-down"></i></a>
+                                            <a href="#">Catégories <i class="ion-ios-arrow-down"></i></a>
 
                                         </li>
                                         <li class="menu-dropdown position-static">
-                                            <a href="#">Blog List <i class="ion-ios-arrow-down"></i></a>
-
+                                            <a href="#">Marques <i class="ion-ios-arrow-down"></i></a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-dropdown">
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li class="menu-dropdown position-static">
                                             <a href="#">Blog Single <i class="ion-ios-arrow-down"></i></a>
@@ -154,7 +90,11 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="">Contact Us</a></li>
+                                <li class="menu-dropdown">
+                                    <a href="#">Formules de paiement</a>
+
+                                </li>
+                                <li><a href="">Contactez nous</a></li>
                             </ul>
                         </div>
                         <!--Main Navigation End -->
@@ -164,64 +104,25 @@
                             <div class="header_account_list search_list">
                                 <a href="javascript:void(0)"><i class="ion-ios-search-strong"></i></a>
                                 <div class="dropdown_search">
-                                    <form action="#">
-                                        <input placeholder="Search entire store here ..." type="text" />
 
-                                        <button type="submit"><i class="ion-ios-search-strong"></i></button>
-                                    </form>
                                 </div>
                             </div>
                             <!--Seach Area End -->
                             <!--Contact info Start -->
-                            <div class="contact-link">
-                                <div class="phone">
-                                    <p>Call us:</p>
-                                    <a href="tel:(+800)345678">(+800)345678</a>
-                                </div>
-                            </div>
+
                             <!--Contact info End -->
                             <!--Cart info Start -->
                             <div class="cart-info d-flex">
-                                <div class="mini-cart-warp">
-                                    <a href="#" class="count-cart"><span>$20.00</span></a>
+                                <div class="mini-cart-warp" id="pr">
+
                                     <div class="mini-cart-content">
-                                        <ul>
-                                            <li class="single-shopping-cart">
-                                                <div class="shopping-cart-img">
-                                                    <a href=""><img alt="" src="{{ asset('assets/images/product-image/mini-cart/1.jpg') }}" /></a>
-                                                    <span class="product-quantity">1x</span>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="">Juicy Couture...</a></h4>
-                                                    <span>$9.00</span>
-                                                    <div class="shopping-cart-delete">
-                                                        <a href="#"><i class="ion-android-cancel"></i></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="single-shopping-cart">
-                                                <div class="shopping-cart-img">
-                                                    <a href=""><img alt="" src="{{ asset('assets/images/product-image/mini-cart/2.jpg') }}" /></a>
-                                                    <span class="product-quantity">1x</span>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="">Water and Wind...</a></h4>
-                                                    <span>$11.00</span>
-                                                    <div class="shopping-cart-delete">
-                                                        <a href="#"><i class="ion-android-cancel"></i></a>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                        <ul id="pan">
+
                                         </ul>
-                                        <div class="shopping-cart-total">
-                                            <h4>Subtotal : <span>$20.00</span></h4>
-                                            <h4>Shipping : <span>$7.00</span></h4>
-                                            <h4>Taxes : <span>$0.00</span></h4>
-                                            <h4 class="shop-total">Total : <span>$27.00</span></h4>
+                                        <div id="price">
+
                                         </div>
-                                        <div class="shopping-cart-btn text-center">
-                                            <a class="default-btn" href="">checkout</a>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -385,27 +286,7 @@
                         <div class="subscrib-text">
                             <p>You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice.</p>
                         </div>
-                        <div id="mc_embed_signup" class="subscribe-form">
-                            <form
-                                    id="mc-embedded-subscribe-form"
-                                    class="validate"
-                                    novalidate=""
-                                    target="_blank"
-                                    name="mc-embedded-subscribe-form"
-                                    method="post"
-                                    action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
-                            >
-                                <div id="mc_embed_signup_scroll" class="mc-form">
-                                    <input class="email" type="email" required="" placeholder="Enter your email here.." name="EMAIL" value="" />
-                                    <div class="mc-news" aria-hidden="true" style="position: absolute; left: -5000px;">
-                                        <input type="text" value="" tabindex="-1" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" />
-                                    </div>
-                                    <div class="clear">
-                                        <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe" value="Sign Up" />
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+
                         <div class="img_app">
                             <a href="#"><img src="{{ asset('assets/images/icons/app_store.png') }}" alt="" /></a>
                             <a href="#"><img src="{{ asset('assets/images/icons/google_play.png') }}" alt="" /></a>
@@ -431,111 +312,7 @@
     </div>
     <!--  Footer Bottom Area End-->
 </footer>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-5 col-sm-12 col-xs-12">
-                        <div class="tab-content quickview-big-img">
-                            <div id="pro-1" class="tab-pane fade show active">
-                                <img src="{{ asset('assets/images/product-image/organic/product-11.jpg') }}" alt="" />
-                            </div>
-                            <div id="pro-2" class="tab-pane fade">
-                                <img src="{{ asset('assets/images/product-image/organic/product-9.jpg') }}" alt="" />
-                            </div>
-                            <div id="pro-3" class="tab-pane fade">
-                                <img src="{{ asset('assets/images/product-image/organic/product-20.jpg') }}" alt="" />
-                            </div>
-                            <div id="pro-4" class="tab-pane fade">
-                                <img src="{{ asset('assets/images/product-image/organic/product-19.jpg') }}" alt="" />
-                            </div>
-                        </div>
-                        <!-- Thumbnail Large Image End -->
-                        <!-- Thumbnail Image End -->
-                        <div class="quickview-wrap mt-15">
-                            <div class="quickview-slide-active owl-carousel nav owl-nav-style owl-nav-style-2" role="tablist">
-                                <a class="active" data-toggle="tab" href="#pro-1"><img src="{{ asset('assets/images/product-image/organic/product-11.jpg') }}" alt="" /></a>
-                                <a data-toggle="tab" href="#pro-2"><img src="{{ asset('assets/images/product-image/organic/product-9.jpg') }}" alt="" /></a>
-                                <a data-toggle="tab" href="#pro-3"><img src="{{ asset('assets/images/product-image/organic/product-20.jpg') }}" alt="" /></a>
-                                <a data-toggle="tab" href="#pro-4"><img src="{{ asset('assets/images/product-image/organic/product-19.jpg') }}" alt="" /></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7 col-sm-12 col-xs-12">
-                        <div class="product-details-content quickview-content">
-                            <h2>Originals Kaval Windbr</h2>
-                            <p class="reference">Reference:<span> demo_17</span></p>
-                            <div class="pro-details-rating-wrap">
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <span class="read-review"><a class="reviews" href="#">Read reviews (1)</a></span>
-                            </div>
-                            <div class="pricing-meta">
-                                <ul>
-                                    <li class="old-price not-cut">€18.90</li>
-                                </ul>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisic elit eiusm tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim venialo quis nostrud exercitation ullamco</p>
-                            <div class="pro-details-size-color">
-                                <div class="pro-details-color-wrap">
-                                    <span>Color</span>
-                                    <div class="pro-details-color-content">
-                                        <ul>
-                                            <li class="blue"></li>
-                                            <li class="maroon active"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pro-details-quality">
 
-                                <div class="pro-details-cart btn-hover">
-                                    <a href="#"> + Add To Cart</a>
-                                </div>
-                            </div>
-                            <div class="pro-details-wish-com">
-                                <div class="pro-details-wishlist">
-                                    <a href="#"><i class="ion-android-favorite-outline"></i>Add to wishlist</a>
-                                </div>
-                                <div class="pro-details-compare">
-                                    <a href="#"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
-                                </div>
-                            </div>
-                            <div class="pro-details-social-info">
-                                <span>Share</span>
-                                <div class="social-info">
-                                    <ul>
-                                        <li>
-                                            <a href="#"><i class="ion-social-facebook"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="ion-social-twitter"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="ion-social-google"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="ion-social-instagram"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Modal end -->
 
 <!-- Scripts to be loaded  -->
@@ -567,6 +344,72 @@
 <!-- Main Activation JS -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    var panier = localStorage.getItem("panier");
+    var prixTotal = 0 ;
+    var livraison = 0;
+    var total = 0;
+    if(panier){
+        var obj = jQuery.parseJSON(panier);
+        for(i=0; i< obj.length ; i++){
+            prixTotal = prixTotal + parseInt(obj[i].prix)
+            $('#pan').append('<li class="single-shopping-cart">'+
+                '<div class="shopping-cart-img">'+
+                '<a href=""><img alt="" src="'+obj[i].image+'" /></a>'+
+                '<span class="product-quantity">'+obj[i].quantite+'</span>'+
+                '</div>'+
+                ' <div class="shopping-cart-title">'+
+                '<h4><a href="">'+obj[i].titre+'</a></h4>'+
+                '<span>'+obj[i].prix+'</span>'+
+                ' <div class="shopping-cart-delete">'+
+                '<a href="#"><i class="ion-android-cancel"></i></a>'+
+                '</div>'+
+                '</div>'+
+                '</li>')
+        }
+        if(prixTotal < 40){
+            livraison = 7 ;
+        }
+        total  = livraison + prixTotal
+        $('#price').append('<div class="shopping-cart-total">'+
+        '<h4>Prix : <span>'+prixTotal+ ' TND'+'</span></h4>'+
+        '<h4>Livraison : <span>'+livraison+' TND'+'</span></h4>'+
+        '<h4 class="shop-total">Total : <span>'+total+' TND'+'</span></h4>'+
+        '</div>'+
+        '<div class="shopping-cart-btn text-center">'+
+        '<a class="default-btn" href="{{ path('cart') }}" id="clickPanier">checkout</a>'+
+        '</div>')
+        $('#pr').append('<div id="vam"><a href="#" class="count-cart" ><span>'+total+' TND</span></a></div>')
+    }
+    else{
+        $('#pr').append('<div id="vam"><a href="#" class="count-cart" ><span> 0.00 TND</span></a></div>')
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+{% block js %}
+{% endblock %}
 </body>
 </html>
 

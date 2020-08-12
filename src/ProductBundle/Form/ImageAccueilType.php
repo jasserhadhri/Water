@@ -5,12 +5,11 @@ namespace ProductBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MarqueType extends AbstractType
+class ImageAccueilType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -18,9 +17,7 @@ class MarqueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre',TextType::class,array("attr"=>["class"=>"form-control"]))
-            ->add('description',TextareaType::class,array("attr"=>["class"=>"form-control"]))
-            ->add('logo',FileType::class,array('attr' => array('required'=>false,'class' => 'form-control file'),'data_class' => null,'label'=>'Choisir une image'))
+            ->add('image',FileType::class,array('attr' => array('required'=>false,'class' => 'form-control file'),'data_class' => null,'label'=>'Choisir une image'))
             ->add('Enregistrer',SubmitType::class,array("attr"=>["class"=>"form-control"]));
     }/**
      * {@inheritdoc}
@@ -28,7 +25,7 @@ class MarqueType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ProductBundle\Entity\Marque'
+            'data_class' => 'ProductBundle\Entity\ImageAccueil'
         ));
     }
 
@@ -37,7 +34,7 @@ class MarqueType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'productbundle_marque';
+        return 'productbundle_imageaccueil';
     }
 
 
