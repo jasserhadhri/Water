@@ -1,0 +1,137 @@
+{% extends('base.html.twig') %}
+{% block section %}
+    <div class="checkout-area mt-60px mb-40px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="billing-info-wrap">
+                        <h3>Détails de facturation</h3>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-20px">
+                                    <label>Nom :</label>
+                                    <input type="text" id="name" value="{{ app.user.nom }}" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-20px">
+                                    <label>Prénom</label>
+                                    <input type="text" id="last" value="{{ app.user.prenom }}" />
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="billing-info mb-20px">
+                                    <label>Adresse</label>
+                                    <input class="billing-address" placeholder="House number and street name" type="text" id="adresse" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-20px">
+                                    <label>Téléphone</label>
+                                    <input type="text"  id="phone"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-20px">
+                                    <label>Email</label>
+                                    <input type="text" id="email" value="{{ app.user.email }}"/>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="your-order-area">
+                        <h3>Votre Commande</h3>
+                        <div class="your-order-wrap gray-bg-4">
+                            <div class="your-order-product-info">
+                                <div class="your-order-top">
+                                    <ul>
+                                        <li>Produit</li>
+                                        <li>Total</li>
+                                    </ul>
+                                </div>
+                                <div class="your-order-middle">
+                                    {% for c in commandes %}
+
+
+                                    <ul>
+                                        <li><span class="order-middle-left">{{c.produit.titre}} X {{c.quantite}}</span> <span class="order-price">{{c.totale}} </span></li>
+
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="your-order-bottom">
+                                    <ul>
+                                        <li class="your-order-shipping">Livraison</li>
+                                        {% if totales > 45 %}
+                                        <li>Gratuit </li>
+                                        {% endif %}
+                                        {% if totales < 45 %}
+                                        <li>+7 DT </li>
+                                        {% endif %}
+
+                                    </ul>
+                                </div>
+                                <div class="your-order-total">
+                                    <ul>
+                                        <li class="order-total">Totale</li>
+                                        <li>{{totales}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Place-order mt-25">
+                            <a class="btn-hover" id="cmd" href="#">Place Order</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script >
+            $("#cmd").click(function () {
+                var name = $("#name").val();
+                var last = $("#last").val();
+                var adresse = $("#adresse").val();
+                var phone = $("#phone").val();
+                var email= $("#email").val();
+                var data = [];
+                data.push(name);
+                data.push(last);
+                data.push(adresse);
+                data.push(phone);
+                data.push(email);
+                data.push("{{ numCommande }}");
+                $.post('{{ path('validation') }}',JSON.stringify(data),function (mes) {
+                    localStorage.removeItem('commande');
+                    //window.location.href = "/successvalidation"
+                })
+            })
+
+
+
+    </script>
+{% endblock %}
+{% block marques %}
+    {% for m in marque %}
+        <li class="menu-dropdown">
+            {{ m.titre }}
+        </li>
+    {% endfor %}
+{% endblock %}
+{% block categories %}
+    {% for m in categorie %}
+        <li class="menu-dropdown">
+            {{ m.titre }}
+        </li>
+    {% endfor %}
+{% endblock %}

@@ -67,7 +67,7 @@
                         <div class="main-navigation d-none d-lg-block">
                             <ul>
                                 <li class="menu-dropdown">
-                                    <a href="#">Accueil</a>
+                                    <a href="{{ path('product_homepage') }}">Accueil</a>
 
                                 </li>
                                 <li class="menu-dropdown">
@@ -75,18 +75,18 @@
                                     <ul class="sub-menu">
                                         <li class="menu-dropdown position-static">
                                             <a href="#">Catégories <i class="ion-ios-arrow-down"></i></a>
+                                            <ul class="sub-menu">
+                                                {% block categories %}
+                                                {% endblock %}
+                                            </ul>
 
                                         </li>
                                         <li class="menu-dropdown position-static">
                                             <a href="#">Marques <i class="ion-ios-arrow-down"></i></a>
                                             <ul class="sub-menu">
-                                                <li class="menu-dropdown">
-                                                </li>
+                                                {% block marques %}
+                                                {% endblock %}
                                             </ul>
-                                        </li>
-                                        <li class="menu-dropdown position-static">
-                                            <a href="#">Blog Single <i class="ion-ios-arrow-down"></i></a>
-
                                         </li>
                                     </ul>
                                 </li>
@@ -95,6 +95,25 @@
 
                                 </li>
                                 <li><a href="">Contactez nous</a></li>
+                                {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                    <li class="menu-dropdown">
+                                        <a href="{{ path('Login') }}">Se connecter ?</a>
+
+                                    </li>
+
+
+                                {% endif %}
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                    <li class="menu-dropdown">
+                                        <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+
+                                    </li>
+
+
+                                {% endif %}
+
                             </ul>
                         </div>
                         <!--Main Navigation End -->
@@ -107,15 +126,19 @@
 
                                 </div>
                             </div>
+
+
                             <!--Seach Area End -->
                             <!--Contact info Start -->
 
                             <!--Contact info End -->
                             <!--Cart info Start -->
                             <div class="cart-info d-flex">
+
                                 <div class="mini-cart-warp" id="pr">
 
                                     <div class="mini-cart-content">
+
                                         <ul id="pan">
 
                                         </ul>

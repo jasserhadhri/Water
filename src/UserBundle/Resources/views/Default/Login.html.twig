@@ -75,3 +75,17 @@
         </div>
     </div>
 {% endblock %}
+{% block marques %}
+    {% for m in marque %}
+        <li class="menu-dropdown">
+            {{ m.titre }}
+        </li>
+    {% endfor %}
+{% endblock %}
+{% block categories %}
+    {% for m in categorie %}
+        <li class="menu-dropdown">
+            {{ m.titre }}
+        </li>
+    {% endfor %}
+{% endblock %}

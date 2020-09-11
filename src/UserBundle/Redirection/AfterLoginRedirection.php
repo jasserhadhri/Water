@@ -41,10 +41,10 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
             $redirection = new RedirectResponse($this->router->generate('admin_homepage'));
         // otherwise, if is a commercial user we redirect to the crm area
         elseif (in_array('ROLE_SIMPLE_USER', $rolesTab, true))
-            $redirection = new RedirectResponse($this->router->generate('forum_homepage'));
+            $redirection = new RedirectResponse($this->router->generate('cart'));
         // otherwise we redirect user to the member area
         else
-            $redirection = new RedirectResponse($this->router->generate('forum_homepage'));
+            $redirection = new RedirectResponse($this->router->generate('product_homepage'));
 
         return $redirection;
     }

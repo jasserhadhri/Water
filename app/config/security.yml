@@ -18,13 +18,14 @@ security:
             pattern: ^/
             user_checker: security.user_checker
             form_login:
+                login_path: /connexion
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
                 success_handler: redirect.after.login
 
             logout:
                 path:    /logout
-                target:  /Home
+                target:  /home
             anonymous:    true
 
     access_control:

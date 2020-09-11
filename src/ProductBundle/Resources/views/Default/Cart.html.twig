@@ -62,11 +62,13 @@
                                 <h5 id="prixTotal"></h5>
                                 <div class="total-shipping">
                                     <ul>
+                                        <li id="prom"></li>
                                         <li id="liv"></li>
+
                                     </ul>
                                 </div>
                                 <h4 class="grand-totall-title" id="coutTotal"></h4>
-                                <a href="#" id="cmd">Passer votre commande</a>
+                                <button class="cart-btn-2 btn-block" id="cmd">Passer votre commande</button>
                             </div>
                         </div>
                     </div>
@@ -77,18 +79,45 @@
 {% endblock %}
 {% block js %}
     <script>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        var commande = localStorage.getItem("commande");
+        if(commande){
+            var r = confirm("voulez vous enregistrer votre adresse de livraison ?");
+            if (r == true) {
+                window.location.href = "/livraison/"+commande.toString();
+            } else {
+                txt = "You pressed Cancel!";
+            }
+        }
+        {% endif %}
         var panier = localStorage.getItem("panier");
-
+        var promos = [];
+        var rem = 0
         var prixTotal = 0 ;
         var livraison = 0 ;
         var coutTotal = 0 ;
         if(panier) {
             var data = jQuery.parseJSON(panier);
+            $.post('{{ path('checkPromotio') }}',JSON.stringify(data),function (mes) {
+                /**localStorage.setItem('commande', mes.toString());
+                 window.setTimeout(function(){
+                        window.location.href = "/livraison/"+mes.toString()
+                    }, 1500);**/
+                for(j=0; j < mes["promotion"].length;j++){
+                    promos.push(mes["promotion"][j]);
+
+                }
+                remises(promos,data);
+
+            })
+
             for (i = 0; i < data.length; i++) {
+
                 prixTotal = prixTotal + parseFloat(data[i].prix) ;
                 if(prixTotal < 40){
                     livraison = 7 ;
                 }
+
                 coutTotal = prixTotal + livraison ;
                 $('#tbody').append('<tr>'+
                 '<td class="product-thumbnail">'+
@@ -104,14 +133,11 @@
                 '<a href="#" id="del'+data[i].id+'"><i class="fa fa-times"></i></a>'+
                 '</td>'+
                 '</tr>');
-
                 $("#qte"+data[i].id).change(function(){
-
                     var elmId = $(this).attr("id");
                     divID = elmId[3] - 1 ;
                     data[divID].quantite = $(this).val();
                     var prixx = parseFloat(data[divID].prix);
-
                     var idd = prixx * parseFloat($(this).val());
                     $("#total"+data[divID].id).empty();
                     $("#total"+data[divID].id).append(idd+" TND");
@@ -122,11 +148,18 @@
                 })
                 var idd = parseFloat(data[i].prix) * parseFloat($("#qte"+data[i].id).val());
                 $("#total"+data[i].id).append(idd+" TND");
-
+            }
+            function remises(remise,data) {
+                var taux =0;
+                console.log(remise)
+                for (j = 0; j < remise.length; j++) {
+                    taux = taux + parseFloat(remise[j]["remise"]);
+                }
+                rem = rem + taux;
+                $("#prom").append('Remise :  <span>'+taux+' %</span>')
             }
             function prTotal(e){
                 prT = 0 ;
-
                 for (j = 0; j < e.length; j++) {
                     console.log(e[j])
                     prT = prT + (parseFloat(e[j].prix) * parseInt(e[j].quantite));
@@ -148,23 +181,35 @@
             $("#prixTotal").append('Prix total des produits <span>'+prixTotal+' TND</span>')
             $("#coutTotal").append('Total <span>'+coutTotal+' TND</span>')
             $("#liv").append('Frais livraison <span>'+livraison+' TND</span>')
-
-
             $("#deleteCart").click(function () {
                 localStorage.removeItem("panier");
                 window.location.href = "/home";
-
             })
-
             $("#cmd").click(function () {
-                console.log(data)
+                $.post('{{ path('commande') }}',JSON.stringify(data),function (mes) {
+                    localStorage.setItem('commande', mes.toString());
+                    window.setTimeout(function(){
+                        window.location.href = "/livraison/"+mes.toString()
+                    }, 1500);
+                })
             })
-
         }
-
     </script>
 {% endblock %}
-
+{% block marques %}
+    {% for m in marque %}
+        <li class="menu-dropdown">
+            {{ m.titre }}
+        </li>
+    {% endfor %}
+{% endblock %}
+{% block categories %}
+    {% for m in categorie %}
+        <li class="menu-dropdown">
+            {{ m.titre }}
+        </li>
+    {% endfor %}
+{% endblock %}
 
 
 

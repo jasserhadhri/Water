@@ -38,9 +38,53 @@ class Commande
     /**
      * @var int
      *
-     * @ORM\Column(name="numcommande", type="integer", unique=true)
+     * @ORM\Column(name="numcommande", type="string")
      */
     private $numCommande;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="enable", type="integer")
+     */
+    private $enable;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="emailsend", type="integer")
+     */
+    private $emailsend;
+
+    /**
+     * @return int
+     */
+    public function getEmailsend()
+    {
+        return $this->emailsend;
+    }
+
+    /**
+     * @param int $emailsend
+     */
+    public function setEmailsend($emailsend)
+    {
+        $this->emailsend = $emailsend;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEnable()
+    {
+        return $this->enable;
+    }
+
+    /**
+     * @param int $enable
+     */
+    public function setEnable($enable)
+    {
+        $this->enable = $enable;
+    }
 
     /**
      * @var \DateTime
@@ -60,44 +104,70 @@ class Commande
      * @ORM\ManyToOne(targetEntity="ProductBundle\Entity\Promotion")
      * @ORM\JoinColumn(name="idPromotion",referencedColumnName="id")
      */
-    private $idPromotion;
+    private $promotion;
     /**
      * @ORM\ManyToOne(targetEntity="ProductBundle\Entity\Produit")
      * @ORM\JoinColumn(name="idProduit",referencedColumnName="id")
      */
-    private $idProduit;
+    private $produit;
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user",referencedColumnName="id")
+     */
+    private $user;
+
 
     /**
      * @return mixed
      */
-    public function getIdPromotion()
+    public function getUser()
     {
-        return $this->idPromotion;
+        return $this->user;
     }
 
     /**
-     * @param mixed $idPromotion
+     * @param mixed $user
      */
-    public function setIdPromotion($idPromotion)
+    public function setUser($user)
     {
-        $this->idPromotion = $idPromotion;
+        $this->user = $user;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getPromotion()
+    {
+        return $this->promotion;
+    }
+
+    /**
+     * @param mixed $promotion
+     */
+    public function setPromotion($promotion)
+    {
+        $this->promotion = $promotion;
     }
 
     /**
      * @return mixed
      */
-    public function getIdProduit()
+    public function getProduit()
     {
-        return $this->idProduit;
+        return $this->produit;
     }
 
     /**
-     * @param mixed $idProduit
+     * @param mixed $produit
      */
-    public function setIdProduit($idProduit)
+    public function setProduit($produit)
     {
-        $this->idProduit = $idProduit;
+        $this->produit = $produit;
     }
+
+
+
     /**
      * Get id
      *
@@ -157,28 +227,21 @@ class Commande
     }
 
     /**
-     * Set numcommande
-     *
-     * @param integer $numcommande
-     *
-     * @return Commande
+     * @return int
      */
-    public function setNumcommande($numcommande)
+    public function getNumCommande()
     {
-        $this->numcommande = $numcommande;
-
-        return $this;
+        return $this->numCommande;
     }
 
     /**
-     * Get numcommande
-     *
-     * @return int
+     * @param int $numCommande
      */
-    public function getNumcommande()
+    public function setNumCommande($numCommande)
     {
-        return $this->numcommande;
+        $this->numCommande = $numCommande;
     }
+
 
     /**
      * Set dateCommande

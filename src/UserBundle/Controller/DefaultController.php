@@ -2,6 +2,8 @@
 
 namespace UserBundle\Controller;
 
+use ProductBundle\Entity\Categorie;
+use ProductBundle\Entity\Marque;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -49,8 +51,11 @@ class DefaultController extends Controller
         $csrfToken = $this->has('security.csrf.token_manager')
             ? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
             : null;
+        $marques = $this->getDoctrine()->getRepository(Marque::class)->findAll();
+        $categorie = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
 
         return $this->render('UserBundle:Default:Login.html.twig',array(
+            'marque'=>$marques,'categorie'=>$categorie,
             'last_username' => $lastUsername,
             'error' => $error,
             'csrf_token' => $csrfToken,

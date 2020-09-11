@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+{% block section %}
+    <section class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-content">
+                        <h1 class="breadcrumb-hrading">Shop Page</h1>
+                        <ul class="breadcrumb-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li>Shop List</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Area End -->
+    <!-- Shop Category Area End -->
+    <div class="shop-category-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <!-- Shop Top Area Start -->
+                    <div class="shop-top-bar">
+                        <!-- Left Side start -->
+                        <div class="shop-tab nav mb-res-sm-15">
+                            <a href="#shop-1" data-toggle="tab">
+                                <i class="fa fa-th show_grid"></i>
+                            </a>
+                            <a class="active" href="#shop-2" data-toggle="tab">
+                                <i class="fa fa-list-ul"></i>
+                            </a>
+                            <p>{{commandes|length}} Commande(s)</p>
+                        </div>
+                        <!-- Left Side End -->
+                        <!-- Right Side Start -->
+                        <div class="select-shoing-wrap">
+                            <div class="shot-product">
+                                <p>Sort By:</p>
+                            </div>
+                            <div class="shop-select">
+                                <select>
+                                    <option value="">Sort by newness</option>
+                                    <option value="">A to Z</option>
+                                    <option value=""> Z to A</option>
+                                    <option value="">In stock</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Right Side End -->
+                    </div>
+                    <!-- Shop Top Area End -->
+
+                    <!-- Shop Bottom Area Start -->
+                    <div id="shop-2" class="tab-pane active">
+                        {% for v in commandes %}
+                            <div class="shop-list-wrap mb-30px scroll-zoom">
+                                <div class="row list-product m-0px">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                                <div class="left-img">
+                                                    <div class="img-block">
+                                                        <a href="single-product.html" class="thumbnail">
+                                                            <img class="first-img" src="{{ asset(v.produit.image) }}"  alt="" />
+                                                            <img class="second-img" src="{{ asset(v.produit.image) }}"  alt="" />
+                                                        </a>
+                                                        <div class="quick-view">
+                                                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
+                                                                <i class="ion-ios-search-strong"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                                <div class="product-desc-wrap">
+                                                    <div class="product-decs">
+                                                        <a class="inner-link" href="shop-4-column.html"><span>Nom: {{ v.user.nom }}</span></a>
+                                                        <a class="inner-link" href="shop-4-column.html"><span>Prénom: {{ v.user.prenom }}</span></a>
+                                                        <a class="inner-link" href="shop-4-column.html"><span>Methode de paiment : {{ v.methodePaiment }}</span></a>
+                                                        <h2><a href="single-product.html" class="product-link">{{v.dateCommande|date("m/d/Y")}}</a></h2>
+                                                        <div class="pricing-meta">
+                                                            <ul>
+                                                                <li class="old-price not-cut">{{v.totale}} DT</li>
+                                                            </ul>
+                                                        </div>
+                                                        {% if v.enable == '1' %}
+                                                            <div class="in-stock">Approuvé: <span>Oui</span></div>
+                                                        {% endif %}
+                                                        {% if v.enable == '0' %}
+                                                            <div class="in-stock">Approuvé: <span>information sur livraison manquante</span></div>
+                                                        {% endif %}
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <!-- Shop Tab Content End -->
+                        <!--  Pagination Area Start -->
+                        <div >
+                            {{ knp_pagination_render(commandes) }}
+
+
+                        </div>
+                        <!--  Pagination Area End -->
+                    </div>
+                    <!-- Shop Bottom Area End -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block marques %}
+    {% for m in marque %}
+        <li class="menu-dropdown">
+            {{ m.titre }}
+        </li>
+    {% endfor %}
+{% endblock %}
+{% block categories %}
+    {% for m in categorie %}
+        <li class="menu-dropdown">
+            {{ m.titre }}
+        </li>
+    {% endfor %}
+{% endblock %}

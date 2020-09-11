@@ -34,3 +34,42 @@ panier:
 cart:
     path:     /cart
     defaults: { _controller: ProductBundle:Default:Cart}
+commande:
+    path:     /commande
+    defaults: { _controller: ProductBundle:Default:Commande}
+livraison:
+    path:     /livraison/{uni}
+    defaults: { _controller: ProductBundle:Default:livraison}
+validation:
+    path:     /validationcommande
+    defaults: { _controller: ProductBundle:Default:validation}
+successvalidation:
+    path:     /successvalidation
+    defaults: { _controller: ProductBundle:Default:successvalidation}
+checkPromotio:
+    path:     /checkPromotion
+    defaults: { _controller: ProductBundle:Default:checkPromotion}
+mescommandes:
+    path:     /mescommandes
+    defaults: { _controller: ProductBundle:Default:commandescl}
+adcommandes:
+    path:     /adcommandes
+    defaults: { _controller: ProductBundle:Default:commandesad}
+Facture:
+    path:     /facture/{idliv}
+    defaults: { _controller: ProductBundle:Default:Facture}
+Pdf_Facture:
+    path:     /pdffacture/{idliv}
+    defaults: { _controller: ProductBundle:Default:pdfFacture}
+Livraison_Admin:
+    path:     /listelivraisonAdmin
+    defaults: { _controller: ProductBundle:Default:livraisonAdmin}
+Livraison_Client:
+    path:     /listelivraisonClient
+    defaults: { _controller: ProductBundle:Default:livraisonClient}
+afficher_par_categories:
+    path:     /pr_ct/{id}
+    defaults: { _controller: ProductBundle:Default:afficherparCategorie}
+afficher_par_marques:
+    path:     /pr_mq/{id}
+    defaults: { _controller: ProductBundle:Default:afficherparMarques}
