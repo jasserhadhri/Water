@@ -47,7 +47,7 @@ successvalidation:
     path:     /successvalidation
     defaults: { _controller: ProductBundle:Default:successvalidation}
 checkPromotio:
-    path:     /checkPromotion
+    path:     /checkPromotion/{id}
     defaults: { _controller: ProductBundle:Default:checkPromotion}
 mescommandes:
     path:     /mescommandes
@@ -73,3 +73,6 @@ afficher_par_categories:
 afficher_par_marques:
     path:     /pr_mq/{id}
     defaults: { _controller: ProductBundle:Default:afficherparMarques}
+AfficherProduitClient:
+    path:     /AfficherProduitCl
+    defaults: { _controller: ProductBundle:Default:AfficherClientProduits}

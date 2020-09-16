@@ -21,7 +21,7 @@ class DefaultController extends Controller
     private $encoderFactory;
     public function indexAction()
     {
-        return $this->render('UserBundle:Default:index.html.twig');
+        return $this->redirectToRoute("product_homepage");
     }
     public function LoginAction(Request $request)
     {
@@ -76,7 +76,7 @@ class DefaultController extends Controller
         $user->addRole("ROLE_SIMPLE_USER");
         $user->setDateNaissance(new \DateTime($request->get('date')));
         $user->setTitre($request->get('type'));
-        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')->setUsername('monguide07@gmail.com')->setPassword('so what00112233');
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')->setUsername('monguide07@gmail.com')->setPassword('Root123@');
 
         $mailer = \Swift_Mailer::newInstance($transport);
         $message = \Swift_Message::newInstance('Vérifier votre compte !')
@@ -104,7 +104,7 @@ class DefaultController extends Controller
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(array('username'=>$username,'confirmationToken'=>$token));
         if($user){
             $user->setEnabled(1);
-            $user->setConfirmationToken("");
+            $user->setConfirmationToken(null);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

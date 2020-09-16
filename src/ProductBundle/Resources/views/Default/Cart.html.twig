@@ -98,18 +98,6 @@
         var coutTotal = 0 ;
         if(panier) {
             var data = jQuery.parseJSON(panier);
-            $.post('{{ path('checkPromotio') }}',JSON.stringify(data),function (mes) {
-                /**localStorage.setItem('commande', mes.toString());
-                 window.setTimeout(function(){
-                        window.location.href = "/livraison/"+mes.toString()
-                    }, 1500);**/
-                for(j=0; j < mes["promotion"].length;j++){
-                    promos.push(mes["promotion"][j]);
-
-                }
-                remises(promos,data);
-
-            })
 
             for (i = 0; i < data.length; i++) {
 
@@ -126,19 +114,20 @@
                 '<td class="product-name"><a href="#">'+data[i].titre+'</a></td>'+
                 '<td class="product-price-cart"><span class="amount">'+data[i].prix+' TND</span></td>'+
                 '<td class="product-quantity">'+
-                '<input class="form-control" id="qte'+data[i].id+'" type="number" name="qtybutton" value="1" />'+
+                '<input class="form-control" id="qte'+i+'" type="number" name="qtybutton" value="1" />'+
                 '</td>'+
                 '<td class="product-subtotal" id="total'+data[i].id+'" ></td>'+
                 '<td class="product-remove">'+
                 '<a href="#" id="del'+data[i].id+'"><i class="fa fa-times"></i></a>'+
                 '</td>'+
                 '</tr>');
-                $("#qte"+data[i].id).change(function(){
+                $("#qte"+i).change(function(){
                     var elmId = $(this).attr("id");
-                    divID = elmId[3] - 1 ;
-                    data[divID].quantite = $(this).val();
+                    divID = elmId[3];
+                    data[divID].quantite = parseInt($(this).val());
                     var prixx = parseFloat(data[divID].prix);
-                    var idd = prixx * parseFloat($(this).val());
+
+                    var idd = parseFloat(prixx) * parseFloat($(this).val());
                     $("#total"+data[divID].id).empty();
                     $("#total"+data[divID].id).append(idd+" TND");
                     prTotal(data);
@@ -146,7 +135,7 @@
                 $("#del"+data[i].id).click(function () {
                     console.log("hello");
                 })
-                var idd = parseFloat(data[i].prix) * parseFloat($("#qte"+data[i].id).val());
+                var idd = parseFloat(data[i].prix) * parseFloat($("#qte"+i).val());
                 $("#total"+data[i].id).append(idd+" TND");
             }
             function remises(remise,data) {

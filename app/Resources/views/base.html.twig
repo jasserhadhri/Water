@@ -64,6 +64,9 @@
                     <!-- Navigation Start -->
                     <div class="col-md-10 col-sm-10">
                         <!--Main Navigation Start -->
+                        {% if  is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        {% for x in app.user.Roles %}
+                        {% if x == "ROLE_SIMPLE_USER" %}
                         <div class="main-navigation d-none d-lg-block">
                             <ul>
                                 <li class="menu-dropdown">
@@ -90,32 +93,167 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="menu-dropdown">
-                                    <a href="#">Formules de paiement</a>
-
-                                </li>
-                                <li><a href="">Contactez nous</a></li>
-                                {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-
+                                {% if  is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                                     <li class="menu-dropdown">
-                                        <a href="{{ path('Login') }}">Se connecter ?</a>
-
+                                        <a href="{{ path('Livraison_Client') }}">Mes commandes</a>
                                     </li>
-
-
                                 {% endif %}
-                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                <li><a href="">Contactez nous</a></li>
 
                                     <li class="menu-dropdown">
                                         <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-
                                     </li>
-
-
-                                {% endif %}
-
                             </ul>
                         </div>
+                        {% endif %}
+                            {% if x == "ROLE_SUPER_ADMIN" %}
+                                <div class="main-navigation d-none d-lg-block">
+                                    <ul>
+                                        <li class="menu-dropdown">
+                                            <a href="{{ path('product_homepage') }}">Accueil</a>
+
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="#">Produits <i class="ion-ios-arrow-down"></i></a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-dropdown position-static">
+                                                    <a href="{{ path('Ajouter_Produit') }}">Ajouter produits <i class="ion-ios-arrow-down"></i></a>
+                                                    <ul class="sub-menu">
+
+                                                    </ul>
+
+                                                </li>
+                                                <li class="menu-dropdown position-static">
+                                                    <a href="{{ path('Afficher_Produits') }}">Liste des produits <i class="ion-ios-arrow-down"></i></a>
+                                                    <ul class="sub-menu">
+
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="#">Marques <i class="ion-ios-arrow-down"></i></a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-dropdown position-static">
+                                                    <a href="{{ path('Ajouter_Marque') }}">Ajouter une marque<i class="ion-ios-arrow-down"></i></a>
+                                                    <ul class="sub-menu">
+
+                                                    </ul>
+
+                                                </li>
+                                                <li class="menu-dropdown position-static">
+                                                    <a href="#">Liste des marques <i class="ion-ios-arrow-down"></i></a>
+                                                    <ul class="sub-menu">
+
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="#">Catégories <i class="ion-ios-arrow-down"></i></a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-dropdown position-static">
+                                                    <a href="{{ path('Ajouter_Categorie') }}">Ajouter une catégorie <i class="ion-ios-arrow-down"></i></a>
+                                                    <ul class="sub-menu">
+
+                                                    </ul>
+
+                                                </li>
+                                                <li class="menu-dropdown position-static">
+                                                    <a href="#">Liste des catégories <i class="ion-ios-arrow-down"></i></a>
+                                                    <ul class="sub-menu">
+
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="#">Commandes <i class="ion-ios-arrow-down"></i></a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-dropdown position-static">
+                                                    <a href="{{ path('adcommandes') }}">Liste des commandes<i class="ion-ios-arrow-down"></i></a>
+                                                    <ul class="sub-menu">
+
+                                                    </ul>
+
+                                                </li>
+                                                <li class="menu-dropdown position-static">
+                                                    <a href="{{ path('Livraison_Admin') }}">Liste des livraisons <i class="ion-ios-arrow-down"></i></a>
+                                                    <ul class="sub-menu">
+
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="#">Promotions <i class="ion-ios-arrow-down"></i></a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-dropdown position-static">
+                                                    <a href="#">Liste des promotions<i class="ion-ios-arrow-down"></i></a>
+                                                    <ul class="sub-menu">
+
+                                                    </ul>
+
+                                                </li>
+                                                <li class="menu-dropdown position-static">
+                                                    <a href="{{ path('Ajouter_Promotion') }}">Ajouter une promotion <i class="ion-ios-arrow-down"></i></a>
+                                                    <ul class="sub-menu">
+
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{{ path('ImageAccueil') }}">Image Accueil</a>
+                                        </li>
+
+                                        <li class="menu-dropdown">
+                                            <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            <div class="main-navigation d-none d-lg-block">
+                                <ul>
+                                    <li class="menu-dropdown">
+                                        <a href="{{ path('product_homepage') }}">Accueil</a>
+                                    </li>
+                                    <li class="menu-dropdown">
+                                        <a href="#">Boutique <i class="ion-ios-arrow-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-dropdown position-static">
+                                                <a href="#">Catégories <i class="ion-ios-arrow-down"></i></a>
+                                                <ul class="sub-menu">
+                                                    {% block categorie %}
+                                                    {% endblock %}
+                                                </ul>
+                                            </li>
+                                            <li class="menu-dropdown position-static">
+                                                <a href="#">Marques <i class="ion-ios-arrow-down"></i></a>
+                                                <ul class="sub-menu">
+                                                    {% block marque %}
+                                                    {% endblock %}
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    {% if  is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                        <li class="menu-dropdown">
+                                            <a href="{{ path('Livraison_Client') }}">Mes commandes</a>
+                                        </li>
+                                    {% endif %}
+                                    <li><a href="">Contactez nous</a></li>
+                                        <li class="menu-dropdown">
+                                            <a href="{{ path('Login') }}">Se connecter ?</a>
+                                        </li>
+
+
+                                </ul>
+                            </div>
+                        {% endif %}
                         <!--Main Navigation End -->
                         <!--Header Bottom Account Start -->
                         <div class="header_account_area">
@@ -138,13 +276,15 @@
                                 <div class="mini-cart-warp" id="pr">
 
                                     <div class="mini-cart-content">
-
+                                        <div style="overflow-y: auto; height:450px; ">
                                         <ul id="pan">
 
                                         </ul>
+                                        </div>
                                         <div id="price">
 
                                         </div>
+
 
                                     </div>
                                 </div>
@@ -385,11 +525,13 @@
     var prixTotal = 0 ;
     var livraison = 0;
     var total = 0;
+
     if(panier){
         var obj = jQuery.parseJSON(panier);
         for(i=0; i< obj.length ; i++){
-            prixTotal = prixTotal + parseInt(obj[i].prix)
-            $('#pan').append('<li class="single-shopping-cart">'+
+            prixTotal = prixTotal + parseFloat(obj[i].prix)
+            $('#pan').append('' +
+                '<li class="single-shopping-cart">'+
                 '<div class="shopping-cart-img">'+
                 '<a href=""><img alt="" src="'+obj[i].image+'" /></a>'+
                 '<span class="product-quantity">'+obj[i].quantite+'</span>'+
@@ -398,10 +540,46 @@
                 '<h4><a href="">'+obj[i].titre+'</a></h4>'+
                 '<span>'+obj[i].prix+'</span>'+
                 ' <div class="shopping-cart-delete">'+
-                '<a href="#"><i class="ion-android-cancel"></i></a>'+
+                '<a href="#"><i class="ion-android-cancel" id="deleteitem'+obj[i].id+'"></i></a>'+
                 '</div>'+
                 '</div>'+
                 '</li>')
+            $( "#pan" ).scroll();
+            $('#deleteitem'+obj[i].id).click(function () {
+
+                var elmId = $(this).attr("id");
+                divID = elmId[10] - 1 ;
+                var da = [];
+                for(j=0; j< obj.length ; j++){
+                    if(obj[j] != obj[divID]){
+                        da.push(obj[j]);
+                    }
+
+                }
+                console.log(da);
+                $("#pan").empty();
+                for(j=0; j<da.length ; j++){
+                    if(da.length != 0){
+
+                    $('#pan').append('<li class="single-shopping-cart">'+
+                        '<div class="shopping-cart-img">'+
+                        '<a href=""><img alt="" src="'+da[j].image+'" /></a>'+
+                        '<span class="product-quantity">'+da[j].quantite+'</span>'+
+                        '</div>'+
+                        ' <div class="shopping-cart-title">'+
+                        '<h4><a href="">'+da[j].titre+'</a></h4>'+
+                        '<span>'+da[j].prix+'</span>'+
+                        ' <div class="shopping-cart-delete">'+
+                        '<a href="#"><i class="ion-android-cancel" id="deleteitem'+da[j].id+'"></i></a>'+
+                        '</div>'+
+                        '</div>'+
+                        '</li>')
+                }}
+                localStorage.removeItem("panier");
+                localStorage.setItem('panier', JSON.stringify(da));
+
+            })
+
         }
         if(prixTotal < 40){
             livraison = 7 ;
@@ -416,6 +594,7 @@
         '<a class="default-btn" href="{{ path('cart') }}" id="clickPanier">checkout</a>'+
         '</div>')
         $('#pr').append('<div id="vam"><a href="#" class="count-cart" ><span>'+total+' TND</span></a></div>')
+
     }
     else{
         $('#pr').append('<div id="vam"><a href="#" class="count-cart" ><span> 0.00 TND</span></a></div>')

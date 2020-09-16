@@ -11,7 +11,7 @@
                             TUNISIA DRINKS <br />
                         </h1>
                         <p class="animated">Le meilleur fournisseur alimentaire</p>
-                        <a href="shop-4-column.html" class="shop-btn animated">SHOP NOW</a>
+                        <a href="{{ path('AfficherProduitClient') }}" class="shop-btn animated">SHOP NOW</a>
                     </div>
                 </div>
             </div>
@@ -100,41 +100,39 @@
                             <img class="second-img" src="{{ asset(produit.0.image) }}" alt="" />
                         </a>
                         <div class="quick-view">
-                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" id="dial{{ produit.0.id }}" data-toggle="modal" data-target="#exampleModal">
+                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" id="diale{{ produit.0.id }}" data-toggle="modal" data-target="#exampleModal">
                                 <i class="ion-ios-search-strong"></i>
                             </a>
                         </div>
                     </div>
 
+
                     <div class="product-decs">
-                        <a class="inner-link" href="shop-4-column.html"><span>{{ produit.0.marque.titre }}</span></a>
-                        <h2><a href="single-product.html" class="product-link">{{ produit.0.titre }}</a></h2>
+                        <a class="inner-link" href="{{ path('afficher_par_marques',{'id': produit.0.marque.id}) }}"><span>{{ produit.0.marque.titre }}</span></a>
+                        <h2><a href="{{ path('afficher_par_marques',{'id': produit.0.marque.id}) }}" class="product-link">{{ produit.0.titre }}</a></h2>
                         <div class="pricing-meta">
                             <ul>
                                 <li class="old-price not-cut">{{ produit.0.prix }} TND</li>
+
                             </ul>
                         </div>
                     </div>
                     <div class="add-to-link">
                         <ul>
-                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
+                            <li class="cart"><a class="cart-btn" href="{{ path('afficher_par_marques',{'id': produit.0.marque.id}) }}">ADD TO CART </a></li>
                             <li>
-                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
+                                <a href="{{ path('afficher_par_marques',{'id': produit.0.marque.id}) }}"><i class="ion-android-favorite-outline"></i></a>
                             </li>
                             <li>
-                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
+                                <a href="{{ path('afficher_par_marques',{'id': produit.0.marque.id}) }}"><i class="ion-ios-shuffle-strong"></i></a>
                             </li>
                         </ul>
                     </div>
                 </article>
+
                 {% endfor %}
                 <!-- Single Item -->
-
                 <!-- Single Item -->
-
-
-
-
                 <!-- Single Item -->
             </div>
             <!-- Best Sells Carousel End -->
@@ -143,42 +141,7 @@
     <!-- Best Sells Slider End -->
 
     <!-- Category Area Start -->
-    <section class="categorie-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Section Title -->
-                    <div class="section-title mt-res-sx-30px mt-res-md-30px">
-                        <h2>Marques populaires</h2>
-                        <p>les marques les plus vendus</p>
-                    </div>
-                    <!-- Section Title -->
-                </div>
-            </div>
-            <!-- Category Slider Start -->
-            <div class="category-slider owl-carousel owl-nav-style">
-                <!-- Single item -->
-                {% for m in marque %}
-                <div class="category-item">
-                    <div class="category-list mb-30px">
-                        <div class="category-thumb">
-                            <a href="">
-                                <img src="{{ asset(m.logo) }}" alt="" height="150" width="300"/>
-                            </a>
-                        </div>
 
-                    </div>
-                </div>
-                {% endfor %}
-                <!-- Single item -->
-
-                <!-- Single item -->
-
-                <!-- Single item -->
-                <!-- Single item -->
-            </div>
-        </div>
-    </section>
     <!-- Category Area End  -->
     <!-- Hot deal area Start -->
 
@@ -249,8 +212,42 @@
             <!-- Feature Slider End -->
         </div>
     </section>
-    <!-- Feature Area End -->
-    <!-- Banner Area 2 Start -->
+    <section class="categorie-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Section Title -->
+                    <div class="section-title mt-res-sx-30px mt-res-md-30px">
+                        <h2>Marques populaires</h2>
+                        <p>les marques les plus vendus</p>
+                    </div>
+                    <!-- Section Title -->
+                </div>
+            </div>
+            <!-- Category Slider Start -->
+            <div class="category-slider owl-carousel owl-nav-style">
+                <!-- Single item -->
+                {% for m in marque %}
+                    <div class="category-item">
+                        <div class="category-list mb-30px">
+                            <div class="category-thumb">
+                                <a href="{{ path('afficher_par_marques',{'id': m.id}) }}">
+                                    <img src="{{ asset(m.logo) }}" alt="" height="150" width="300"/>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+                <!-- Single item -->
+
+                <!-- Single item -->
+
+                <!-- Single item -->
+                <!-- Single item -->
+            </div>
+        </div>
+    </section>
     <div class="banner-area-2">
         <div class="container">
             <div class="row">
@@ -270,8 +267,7 @@
                 <div class="col-md-12">
                     <!-- Section Title -->
                     <div class="section-title">
-                        <h2>Recently Added</h2>
-                        <p>Add products to weekly line up</p>
+                        <h2>Promotions</h2>
                     </div>
                     <!-- Section Title -->
                 </div>
@@ -279,368 +275,53 @@
             <!-- Recent Product slider Start -->
             <div class="recent-product-slider owl-carousel owl-nav-style">
                 <!-- Single Item -->
-                <article class="list-product">
-                    <div class="img-block">
-                        <a href="single-product.html" class="thumbnail">
-                            <img class="first-img" src="assets/images/product-image/organic/product-11.jpg" alt="" />
-                            <img class="second-img" src="assets/images/product-image/organic/product-12.jpg" alt="" />
-                        </a>
-                        <div class="quick-view">
-                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
-                                <i class="ion-ios-search-strong"></i>
+                {% for promos in promotions %}
+                    <article class="list-product">
+                        <div class="img-block">
+                            <a href="single-product.html" class="thumbnail">
+                                <img class="first-img" src="{{ asset(promos.produit.image) }}" alt="" />
+                                <img class="second-img" src="{{ asset(promos.produit.image) }}" alt="" />
                             </a>
+                            <div class="quick-view">
+                                <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" id="dialf{{ promos.produit.id }}" data-toggle="modal" data-target="#exampleModal">
+                                    <i class="ion-ios-search-strong"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <ul class="product-flag">
-                        <li class="new">New</li>
-                    </ul>
-                    <div class="product-decs">
-                        <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                        <h2><a href="single-product.html" class="product-link">Originals Kaval Windbr...</a></h2>
-                        <div class="rating-product">
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                        </div>
-                        <div class="pricing-meta">
-                            <ul>
-                                <li class="old-price">€23.90</li>
-                                <li class="current-price">€21.51</li>
-                                <li class="discount-price">-10%</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="add-to-link">
-                        <ul>
-                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                            <li>
-                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                            </li>
-                            <li>
-                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                            </li>
+                        <ul class="product-flag">
+                            <li class="new">Promos</li>
                         </ul>
-                    </div>
-                </article>
+                        <div class="product-decs">
+                            <a class="inner-link" href="shop-4-column.html"><span>{{ promos.produit.marque.titre }}</span></a>
+                            <h2><a href="single-product.html" class="product-link">{{ promos.produit.titre }}</a></h2>
+                            <div class="rating-product">
+                                <i class="ion-android-star"></i>
+                                <i class="ion-android-star"></i>
+                                <i class="ion-android-star"></i>
+                                <i class="ion-android-star"></i>
+                                <i class="ion-android-star"></i>
+                            </div>
+                            <div class="pricing-meta">
+                                <ul>
+                                    <li class="old-price">{{ promos.produit.prix }} TND</li>
+                                    <li class="current-price">{{ promos.produit.prix - ((promos.produit.prix * promos.remise) / 100) }} TND</li>
+                                    <li class="discount-price">{{ promos.remise }} %</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </article>
+                {% endfor %}
                 <!-- Single Item -->
-                <article class="list-product">
-                    <div class="img-block">
-                        <a href="single-product.html" class="thumbnail">
-                            <img class="first-img" src="assets/images/product-image/organic/product-1.jpg" alt="" />
-                            <img class="second-img" src="assets/images/product-image/organic/product-1.jpg" alt="" />
-                        </a>
-                        <div class="quick-view">
-                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
-                                <i class="ion-ios-search-strong"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <ul class="product-flag">
-                        <li class="new">New</li>
-                    </ul>
-                    <div class="product-decs">
-                        <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                        <h2><a href="single-product.html" class="product-link">Juicy Couture Juicy Quil...</a></h2>
-                        <div class="rating-product">
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                        </div>
-                        <div class="pricing-meta">
-                            <ul>
-                                <li class="old-price">€35.90</li>
-                                <li class="current-price">€34.21</li>
-                                <li class="discount-price">-5%</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="add-to-link">
-                        <ul>
-                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                            <li>
-                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                            </li>
-                            <li>
-                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-                <!-- Single Item -->
-                <article class="list-product">
-                    <div class="img-block">
-                        <a href="single-product.html" class="thumbnail">
-                            <img class="first-img" src="assets/images/product-image/organic/product-3.jpg" alt="" />
-                            <img class="second-img" src="assets/images/product-image/organic/product-4.jpg" alt="" />
-                        </a>
-                        <div class="quick-view">
-                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
-                                <i class="ion-ios-search-strong"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <ul class="product-flag">
-                        <li class="new">New</li>
-                    </ul>
-                    <div class="product-decs">
-                        <a class="inner-link" href="shop-4-column.html"><span>GRAPHIC CORNER</span></a>
-                        <h2><a href="single-product.html" class="product-link">Brixton Patrol All Terrai...</a></h2>
-                        <div class="rating-product">
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                        </div>
-                        <div class="pricing-meta">
-                            <ul>
-                                <li class="old-price not-cut">€29.90</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="add-to-link">
-                        <ul>
-                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                            <li>
-                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                            </li>
-                            <li>
-                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-                <!-- Single Item -->
-                <article class="list-product">
-                    <div class="img-block">
-                        <a href="single-product.html" class="thumbnail">
-                            <img class="first-img" src="assets/images/product-image/organic/product-6.jpg" alt="" />
-                            <img class="second-img" src="assets/images/product-image/organic/product-6.jpg" alt="" />
-                        </a>
-                        <div class="quick-view">
-                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
-                                <i class="ion-ios-search-strong"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <ul class="product-flag">
-                        <li class="new">New</li>
-                    </ul>
-                    <div class="product-decs">
-                        <a class="inner-link" href="shop-4-column.html"><span>GRAPHIC CORNER</span></a>
-                        <h2><a href="single-product.html" class="product-link">New Balance Arishi Spo...</a></h2>
-                        <div class="rating-product">
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                        </div>
-                        <div class="pricing-meta">
-                            <ul>
-                                <li class="old-price not-cut">€29.90</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="add-to-link">
-                        <ul>
-                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                            <li>
-                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                            </li>
-                            <li>
-                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-                <!-- Single Item -->
-                <article class="list-product">
-                    <div class="img-block">
-                        <a href="single-product.html" class="thumbnail">
-                            <img class="first-img" src="assets/images/product-image/organic/product-22.jpg" alt="" />
-                            <img class="second-img" src="assets/images/product-image/organic/product-15.jpg" alt="" />
-                        </a>
-                        <div class="quick-view">
-                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
-                                <i class="ion-ios-search-strong"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <ul class="product-flag">
-                        <li class="new">New</li>
-                    </ul>
-                    <div class="product-decs">
-                        <a class="inner-link" href="shop-4-column.html"><span>GRAPHIC CORNER</span></a>
-                        <h2><a href="single-product.html" class="product-link">Calvin Klein Jeans Refle...</a></h2>
-                        <div class="rating-product">
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                        </div>
-                        <div class="pricing-meta">
-                            <ul>
-                                <li class="old-price not-cut">€29.90</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="add-to-link">
-                        <ul>
-                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                            <li>
-                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                            </li>
-                            <li>
-                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-                <!-- Single Item -->
-                <article class="list-product">
-                    <div class="img-block">
-                        <a href="single-product.html" class="thumbnail">
-                            <img class="first-img" src="assets/images/product-image/organic/product-14.jpg" alt="" />
-                            <img class="second-img" src="assets/images/product-image/organic/product-14.jpg" alt="" />
-                        </a>
-                        <div class="quick-view">
-                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
-                                <i class="ion-ios-search-strong"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <ul class="product-flag">
-                        <li class="new">New</li>
-                    </ul>
-                    <div class="product-decs">
-                        <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                        <h2><a href="single-product.html" class="product-link">Madden by Steve Madd...</a></h2>
-                        <div class="rating-product">
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                        </div>
-                        <div class="pricing-meta">
-                            <ul>
-                                <li class="old-price">€12.90</li>
-                                <li class="current-price">€10.21</li>
-                                <li class="discount-price">-10%</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="add-to-link">
-                        <ul>
-                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                            <li>
-                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                            </li>
-                            <li>
-                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-                <!-- Single Item -->
-                <article class="list-product">
-                    <div class="img-block">
-                        <a href="single-product.html" class="thumbnail">
-                            <img class="first-img" src="assets/images/product-image/organic/product-17.jpg" alt="" />
-                            <img class="second-img" src="assets/images/product-image/organic/product-16.jpg" alt="" />
-                        </a>
-                        <div class="quick-view">
-                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
-                                <i class="ion-ios-search-strong"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <ul class="product-flag">
-                        <li class="new">New</li>
-                    </ul>
-                    <div class="product-decs">
-                        <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                        <h2><a href="single-product.html" class="product-link">Trans-Weight Hooded...</a></h2>
-                        <div class="rating-product">
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                        </div>
-                        <div class="pricing-meta">
-                            <ul>
-                                <li class="old-price not-cut">€11.90</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="add-to-link">
-                        <ul>
-                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                            <li>
-                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                            </li>
-                            <li>
-                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-                <!-- Single Item -->
-                <article class="list-product">
-                    <div class="img-block">
-                        <a href="single-product.html" class="thumbnail">
-                            <img class="first-img" src="assets/images/product-image/organic/product-9.jpg" alt="" />
-                            <img class="second-img" src="assets/images/product-image/organic/product-9.jpg" alt="" />
-                        </a>
-                        <div class="quick-view">
-                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
-                                <i class="ion-ios-search-strong"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <ul class="product-flag">
-                        <li class="new">New</li>
-                    </ul>
-                    <div class="product-decs">
-                        <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                        <h2><a href="single-product.html" class="product-link">Water and Wind Resist...</a></h2>
-                        <div class="rating-product">
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                        </div>
-                        <div class="pricing-meta">
-                            <ul>
-                                <li class="old-price not-cut">€11.90</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="add-to-link">
-                        <ul>
-                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
-                            <li>
-                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                            </li>
-                            <li>
-                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </article>
+
                 <!-- Single Item -->
             </div>
             <!-- Recent product slider end -->
         </div>
     </section>
+    <!-- Feature Area End -->
+    <!-- Banner Area 2 Start -->
+
 {% block js %}
     {% for produit in produit %}
     <div class="modal fade" id="exampleModal{{ produit.id }}" tabindex="-1" role="dialog">
@@ -677,8 +358,7 @@
                                     <span class="read-review"><a class="reviews" href="#">Read reviews (1)</a></span>
                                 </div>
                                 <div class="pricing-meta">
-                                    <ul>
-                                        <li class="old-price not-cut">{{produit.prix}} TND</li>
+                                    <ul id="price{{ produit.id }}">
                                     </ul>
                                 </div>
                                 <p>{{ produit.description }}</p>
@@ -757,25 +437,98 @@
             }
 
             $("#dial{{ produit.id }}").click(function () {
+                $("#price{{ produit.id }}").empty();
+                $("#price{{ produit.id }}").append('<li class="old-price not-cut">{{produit.prix}} TND</li>');
+
+
+                $('#exampleModal{{ produit.id }}').modal('toggle');
+            })
+            $("#diale{{ produit.id }}").click(function () {
+                $.post('{{ path('checkPromotio',{'id':produit.id}) }}',JSON.stringify(data),function (mes) {
+                    /**localStorage.setItem('commande', mes.toString());
+                     window.setTimeout(function(){
+                        window.location.href = "/livraison/"+mes.toString()
+                    }, 1500);**/
+                    if(mes["promotion"]){
+                    var remise = parseInt(mes["promotion"][0]["remise"]);
+                    var price = parseFloat({{ produit.prix }});
+                    var newPrice = (price -((price * remise)/ 100))
+
+                        $("#price{{ produit.id }}").empty();
+
+
+
+                        $("#price{{ produit.id }}").append('<li class="old-price">{{ produit.prix }} TND</li>'+
+                        '<li class="current-price" >'+newPrice+' TND</li>'+
+                        '<li class="discount-price">'+remise+' %</li>'+
+                        '<input type="text" value="'+newPrice+'" id="newPrice{{ produit.id }}" hidden>');
+
+
+                    }
+            else{
+                        $("#price{{ produit.id }}").empty();
+                        $("#price{{ produit.id }}").append('<li class="old-price not-cut">{{produit.prix}} TND</li>');
+                    }
+
+                })
+                $('#exampleModal{{ produit.id }}').modal('toggle');
+            })
+            $("#dialf{{ produit.id }}").click(function () {
+                $.post('{{ path('checkPromotio',{'id':produit.id}) }}',JSON.stringify(data),function (mes) {
+                    /**localStorage.setItem('commande', mes.toString());
+                     window.setTimeout(function(){
+                        window.location.href = "/livraison/"+mes.toString()
+                    }, 1500);**/
+                    console.log(mes["promotion"][0]["remise"])
+                    var remise = parseInt(mes["promotion"][0]["remise"]);
+                    var price = parseFloat({{ produit.prix }});
+                    var newPrice = (price -((price * remise)/ 100))
+                    if(mes["promotion"][0]["remise"]){
+                        $("#price{{ produit.id }}").empty();
+
+
+
+                        $("#price{{ produit.id }}").append('<li class="old-price">{{ produit.prix }} TND</li>'+
+                            '<li class="current-price">'+newPrice+' TND</li>'+
+                            '<li class="discount-price">'+remise+' %</li>');
+                    }
+
+                })
                 $('#exampleModal{{ produit.id }}').modal('toggle');
             })
             $("#addpanier{{ produit.id }}").click(function () {
-                var monobjet  = {
-                    titre : "{{ produit.titre }}",
-                    description : "{{ produit.description }}",
-                    image : "{{ produit.image }}",
-                    prix : "{{ produit.prix }}",
-                    quantite : 1,
-                    id : {{ produit.id }}
-                };
-                prix_total = parseInt("{{ produit.prix }}") + prix_total
+                var pr = $("#newPrice{{ produit.id }}").val();
+
+                if(pr){
+                    alert(pr)
+                    var monobjet  = {
+                        titre : "{{ produit.titre }}",
+                        description : "{{ produit.description }}",
+                        image : "{{ produit.image }}",
+                        prix : parseFloat(pr),
+                        quantite : 1,
+                        id : {{ produit.id }}
+                    };
+                    prix_total = parseFloat(pr) + prix_total
+                }
+                else{
+                    var monobjet  = {
+                        titre : "{{ produit.titre }}",
+                        description : "{{ produit.description }}",
+                        image : "{{ produit.image }}",
+                        prix : "{{ produit.prix }}",
+                        quantite : 1,
+                        id : {{ produit.id }}
+                    };
+                    prix_total = parseFloat("{{ produit.prix }}") + prix_total
+                }
                 panier.push(monobjet);
                 var monobjet_json = JSON.stringify(panier);
                 localStorage.setItem('panier', monobjet_json);
                 $("#vam").html('<div id="vam"><a href="#" class="count-cart" ><span>'+prix_total+' TND</span></a></div>')
                 var obj = jQuery.parseJSON(monobjet_json);
                 for(i=0; i< obj.length ; i++){
-                    prixTotal = prixTotal + parseInt(obj[i].prix)
+                    prixTotal = prixTotal + parseFloat(obj[i].prix)
                     $('#pan').append('<li class="single-shopping-cart">'+
                         '<div class="shopping-cart-img">'+
                         '<a href=""><img alt="" src="'+obj[i].image+'" /></a>'+
@@ -800,6 +553,7 @@
                     '<a class="default-btn" href="{{ path('cart') }}" id="clickPanier">checkout</a>'+
                     '</div>')
                 $("#addpanier{{ produit.id }}").hide();
+
             })
         </script>
 
@@ -807,6 +561,7 @@
     <!-- Recent product area end -->
     <!-- Brand area start -->
 {% endblock %}
+
 {% endblock %}
 {% block marques %}
     {% for m in marque %}

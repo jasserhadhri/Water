@@ -113,7 +113,11 @@
                 data.push("{{ numCommande }}");
                 $.post('{{ path('validation') }}',JSON.stringify(data),function (mes) {
                     localStorage.removeItem('commande');
-                    //window.location.href = "/successvalidation"
+                    localStorage.removeItem('panier');
+                    console.log(mes.toString());
+                        window.location.href = "/facture/"+mes.toString()
+
+                    //
                 })
             })
 

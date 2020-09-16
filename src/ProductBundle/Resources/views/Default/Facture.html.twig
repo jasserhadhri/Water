@@ -90,7 +90,6 @@
 <h3>Voci ce que vous avez commandé:</h3>
 <div class="cart-main-area mtb-60px">
     <div class="container">
-
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="#">
@@ -102,23 +101,19 @@
                                 <th>Désignation</th>
                                 <th>Quantite</th>
                                 <th>Prix unitaire</th>
-                                <th>Remise</th>
                                 <th>Montant</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for cmd in commande %}
                                 <tr>
-
                                     <td class="product-name">{{ cmd.produit.id }}</td>
                                     <td class="product-name">{{ cmd.produit.titre }}</td>
                                     <td class="product-price-cart">{{ cmd.quantite }}</td>
                                     <td class="product-price-cart">{{ cmd.totale }}</a></td>
-                                    <td class="product-price-cart">{{ cmd.promotion.remise }}</td>
                                     <td class="product-price-cart">{{ cmd.totale }}</td>
                                 </tr>
                             {% endfor %}
-
                             </tbody>
                         </table>
                     </div>
@@ -127,7 +122,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

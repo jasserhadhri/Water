@@ -30,12 +30,22 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+
+
+        $promotions = $this->getDoctrine()->getRepository(Promotion::class)->findAll();
+        $promos = [];
+        $date = new \DateTime("now");
+        foreach ($promotions as $p){
+            if($date >= $p->getDateDebut() && $date <= $p->getDateFin()){
+                array_push($promos,$p);
+            }
+        }
         $topproduit =$this->getDoctrine()->getRepository(Produit::class)->getTopProducts();
         $marque = $this->getDoctrine()->getRepository(Marque::class)->findAll();
         $categorie = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
         $image =$this->getDoctrine()->getRepository(ImageAccueil::class)->findOneBy(array('enabled'=>true));
         $produit = $this->getDoctrine()->getRepository(Produit::class)->findAll();
-        return $this->render('@Product\Default\index.html.twig',array("topProduit"=>$topproduit,"produit"=>$produit,"categorie"=>$categorie,"marque"=>$marque,"image"=>$image->getImage()));
+        return $this->render('@Product\Default\index.html.twig',array("promotions"=>$promos,"topProduit"=>$topproduit,"produit"=>$produit,"categorie"=>$categorie,"marque"=>$marque,"image"=>$image->getImage()));
     }
     public function AjouterCategorieAction(Request $request){
         $categorie = new Categorie();
@@ -113,7 +123,6 @@ class DefaultController extends Controller
         $marques = $this->getDoctrine()->getRepository(Marque::class)->findAll();
         $categorie = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
         return $this->render('@Product\Default\AfficherProduit.html.twig', array('marque'=>$marques,'categorie'=>$categorie,'produits' => $produits));
-
     }
     public function UpdateProduitAction(Request $request,$id){
         $em = $this->getDoctrine()->getManager();
@@ -275,17 +284,14 @@ class DefaultController extends Controller
         }
         $em->persist($liv);
         $em->flush();
-        return new jsonresponse("Success");
+        return new JsonResponse($liv->getId());
     }
     public function successvalidationAction(){
         return $this->redirectToRoute('product_homepage');
     }
-    public function checkPromotionAction(Request $request){
-        $content = $request->getContent();
-        $json = json_decode($content, true);
+    public function checkPromotionAction($id){
         $promos = [];
-        foreach ($json as $j){
-            $produit = $produit = $this->getDoctrine()->getRepository(Produit::class)->find($j['id']);
+            $produit = $produit = $this->getDoctrine()->getRepository(Produit::class)->find($id);
             $promotion = $this->getDoctrine()->getRepository(Promotion::class)->findBy(array("produit"=>$produit));
             if($promotion){
                 $date = new \DateTime("now");
@@ -327,7 +333,7 @@ class DefaultController extends Controller
                     }
                 }
             }
-        }
+
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizer = new ObjectNormalizer();
         $normalizer->setCircularReferenceLimit(2);
@@ -490,5 +496,17 @@ class DefaultController extends Controller
         return $this->render('@Product\Default\ProduitsparCategorie.html.twig',array("valable"=>$result,"categorie"=>$categories,"marque"=>$marques));
 
     }
+    public function AfficherClientProduitsAction(){
+        $produits = $this->getDoctrine()->getRepository(Produit::class)
+            ->findAll();
+        $marque =$this->getDoctrine()
+            ->getRepository(Marque::class)
+            ->findAll();
+        $categorie = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
+        return $this->render('@Product\Default\AfficherProduitHome.html.twig', array("categorie"=>$categorie,"marque"=>$marque,'produit' => $produits));
+
+    }
+
+
 
 }
